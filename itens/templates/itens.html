@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Itens{% endblock %}
+
+{% block content %}
+    <style>
+        .btn-delete {
+            background-color: #ff0000; /* Vermelho */
+            color: #fff; /* Texto branco */
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-delete:hover {
+            background-color: #cc0000; /* Vermelho mais escuro no hover */
+        }
+    </style>
+
+    <div class="item-container">
+        {% for item in itens %}
+            <div class="item">
+                <h2>{{ item.nome }}</h2>
+                <p><strong>Tipo:</strong> {{ item.tipo }}</p>
+                <p><strong>Descrição:</strong> {{ item.descricao }}</p>
+                <div class="foto">
+                    {% if item.foto %}
+                        <img src="{{ item.foto.url }}" alt="Imagem do item">
+                    {% endif %}
+                </div>
+                <!-- Botão Deletar -->
+                <form action="{% url 'DeleteItem' item.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                </form>
+            </div>
+            <br>
+            <br>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}
