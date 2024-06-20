@@ -17,6 +17,29 @@
         .btn-delete:hover {
             background-color: #cc0000;
         }
+
+        .item {
+            border: 1px solid #ccc;
+            padding: 16px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .item h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .item p {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .foto img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
     </style>
 
     <form method="GET" action="">
@@ -33,20 +56,16 @@
                     <h2>{{ item.nome }}</h2>
                     <p><strong>Tipo:</strong> {{ item.tipo }}</p>
                     <p><strong>Descrição:</strong> {{ item.descricao }}</p>
+                    {% if item.foto %}
                     <div class="foto">
-                        {% if item.foto %}
-                            <img src="{{ item.foto.url }}" alt="Imagem do item">
-                        {% endif %}
+                        <img src="{{ item.foto.url }}" alt="Imagem do item">
                     </div>
-                    
+                    {% endif %}
                     <form action="{% url 'DeleteItem' item.id %}" method="post" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Deletar</button>
                     </form>
                 </div>
-                <br>
-                <br>
-                <br>
             {% endfor %}
         {% endif %}
     </div>
