@@ -10,6 +10,13 @@ class ItensListView(ListView):
     template_name = "itens.html"
     context_object_name = "itens"
 
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return Itens.objects.filter(nome__icontains=query) 
+        else:
+            return Itens.objects.all()
+
 class NewItemView(CreateView):
     model = Itens
     template_name = "new_item.html"

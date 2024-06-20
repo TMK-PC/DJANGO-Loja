@@ -17,11 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from itens.views import ItensListView, NewItemView, DeleteItemView
+from accounts.views import RegisterView, login_view, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('itens/', ItensListView.as_view(), name='ItensList'),
     path('new/', NewItemView.as_view(), name='NewItem'),
     path('delete_item/<int:pk>', DeleteItemView.as_view(), name='DeleteItem'),
+    path('register/', RegisterView.as_view(), name='Register'),
+    path('login/', login_view, name='Login'),
+    path('logout/', logout_view, name = 'Logout' )
     
 ]
