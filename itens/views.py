@@ -20,7 +20,7 @@ class ItensListView(ListView):
 class NewItemView(CreateView):
     model = Itens
     template_name = "new_item.html"
-    fields = ['nome', 'tipo', 'descricao', 'foto']
+    fields = ['nome', 'tipo', 'descricao', 'contato', 'foto']
     success_url = '/itens/'
 
 class DeleteItemView(DeleteView):

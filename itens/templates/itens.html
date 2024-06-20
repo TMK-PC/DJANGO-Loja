@@ -56,6 +56,11 @@
                     <h2>{{ item.nome }}</h2>
                     <p><strong>Tipo:</strong> {{ item.tipo }}</p>
                     <p><strong>Descrição:</strong> {{ item.descricao }}</p>
+                    {% if user.is_authenticated %}
+                    <p><strong>Contato:</strong> {{ item.contato }}</p>
+                    {% else %}
+                    <p><strong>Contato: Faça login para desbloquear</strong> </p>
+                    {% endif %}
                     {% if item.foto %}
                     <div class="foto">
                         <img src="{{ item.foto.url }}" alt="Imagem do item">

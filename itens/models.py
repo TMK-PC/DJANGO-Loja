@@ -14,6 +14,7 @@ class Itens(models.Model):
     tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT)
     nome = models.CharField(blank=True, null=True, max_length= 100)
     descricao = models.TextField()
+    contato = models.CharField(max_length=160, blank=True, null=True)
     foto = models.ImageField(upload_to='media/')
 
     def __str__(self):

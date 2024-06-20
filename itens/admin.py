@@ -8,7 +8,7 @@ class TipoAdmin(admin.ModelAdmin):
 
 @admin.register(Itens)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'tipo', 'descricao')
-    search_fields = ('nome', 'tipo__nome')
-    list_filter = ('tipo',)
+    list_display = ('nome', 'tipo', 'descricao', 'contato')
+    search_fields = ('nome', 'tipo__nome', 'contato')
+    list_filter = ('tipo', )
 
