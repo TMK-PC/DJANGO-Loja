@@ -3,29 +3,47 @@
 {% block title %}Editar Item - {{ item.nome }}{% endblock %}
 
 {% block content %}
-    <h1>Editar Item - {{ item.nome }}</h1>
+<style>
+    .btn-submit {
+        background-color: #007bff; /* Cor de fundo azul */
+        color: white; /* Cor do texto branco */
+        border: none; /* Sem borda */
+        padding: 10px 20px; /* Espaçamento interno */
+        text-decoration: none; /* Sem sublinhado */
+        font-size: 16px; /* Tamanho da fonte */
+        cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+        border-radius: 5px; /* Borda arredondada */
+        display: inline-block; /* Garante que o botão respeite o tamanho do conteúdo */
+        text-align: center; /* Centraliza o texto */
+        margin-right: 10px; /* Margem à direita para separação dos botões */
+    }
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label for="id_nome">Nome:</label>
-        <input type="text" id="id_nome" name="nome" value="{{ item.nome }}"><br><br>
+    .btn-submit:hover {
+        background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
+    }
 
-        <label for="id_tipo">Tipo:</label>
-        <input type="text" id="id_tipo" name="tipo" value="{{ item.tipo }}"><br><br>
+    .btn-cancel {
+        background-color: #dc3545; /* Cor de fundo vermelha */
+        color: white; /* Cor do texto branco */
+        border: none; /* Sem borda */
+        padding: 10px 20px; /* Espaçamento interno */
+        text-decoration: none; /* Sem sublinhado */
+        font-size: 16px; /* Tamanho da fonte */
+        cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+        border-radius: 5px; /* Borda arredondada */
+        display: inline-block; /* Garante que o botão respeite o tamanho do conteúdo */
+        text-align: center; /* Centraliza o texto */
+    }
 
-        <label for="id_descricao">Descrição:</label><br>
-        <textarea id="id_descricao" name="descricao">{{ item.descricao }}</textarea><br><br>
+    .btn-cancel:hover {
+        background-color: #c82333; /* Cor de fundo vermelha mais escura ao passar o mouse */
+    }
+</style>
 
-        <label for="id_contato">Contato:</label>
-        <input type="text" id="id_contato" name="contato" value="{{ item.contato }}"><br><br>
-
-        <label for="id_foto">Foto:</label><br>
-        {% if item.foto %}
-            <img src="{{ item.foto.url }}" alt="Imagem atual"><br><br>
-        {% endif %}
-        <input type="file" id="id_foto" name="foto"><br><br>
-
-        
-        <a href="{% url 'ItensList' %}"class="btn btn-danger">Cancelar</a>
-    </form>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Atualizar" class="btn-submit">
+    <a href="{% url 'ItensList' %}" class="btn btn-cancel">Cancelar</a>
+</form>
 {% endblock %}

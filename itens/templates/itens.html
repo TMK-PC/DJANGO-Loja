@@ -4,7 +4,58 @@
 
 {% block content %}
     <style>
-        
+        /* Estilos gerais */
+        .item-container {
+            margin-top: 20px;
+        }
+
+        .item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .item h2 {
+            margin-top: 0;
+        }
+
+        .item p {
+            margin-bottom: 5px;
+        }
+
+        .item .foto {
+            margin-top: 10px;
+        }
+
+        .item .foto img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .item-actions {
+            margin-top: 10px;
+        }
+
+        .item-actions form,
+        .item-actions a {
+            margin-right: 10px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .item {
+                padding: 15px;
+            }
+
+            .item .foto img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
     </style>
 
     <form method="GET" action="">
@@ -21,22 +72,22 @@
                     <h2>{{ item.nome }}</h2>
                     <p><strong>Tipo:</strong> {{ item.tipo }}</p>
                     <p><strong>Descrição:</strong> {{ item.descricao }}</p>
-                    {% if user.is_authenticated %}
-                        <p><strong>Contato:</strong> {{ item.contato }}</p>
-                    {% else %}
-                        <p><strong>Contato: Faça login para desbloquear</strong></p>
-                    {% endif %}
+                    
+                        <p><strong>Preço:</strong> R${{ item.preco }}</p>
+                    
                     {% if item.foto %}
                         <div class="foto">
                             <img src="{{ item.foto.url }}" alt="Imagem do item">
                         </div>
                     {% endif %}
                     {% if is_funcionario %}
-                        <form action="{% url 'DeleteItem' item.id %}" method="post" style="display: inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Deletar</button>
-                        </form>
-                        <a href="{% url 'EditItem' item.id %}" class="btn btn-primary">Editar</a>
+                        <div class="item-actions">
+                            <form action="{% url 'DeleteItem' item.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Deletar</button>
+                            </form>
+                            <a href="{% url 'EditItem' item.id %}" class="btn btn-primary">Editar</a>
+                        </div>
                     {% endif %}
                 </div>
             {% endfor %}

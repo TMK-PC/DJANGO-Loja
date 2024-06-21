@@ -29,7 +29,7 @@ class ItensListView(ListView):
 class NewItemView(CreateView):
     model = Itens
     template_name = "new_item.html"
-    fields = ['nome', 'tipo', 'descricao', 'contato', 'foto']
+    fields = ['nome', 'tipo', 'descricao', 'preco', 'foto']
     success_url = '/itens/'
 
 class DeleteItemView(DeleteView):
@@ -41,6 +41,6 @@ class DeleteItemView(DeleteView):
 class UpdateItemView(UpdateView):
     model = Itens
     template_name = 'edit_item.html'
-    fields = ['nome', 'tipo', 'descricao', 'contato', 'foto'] 
+    fields = ['nome', 'tipo', 'descricao', 'preco', 'foto'] 
     success_url = '/itens/'
     
