@@ -16,8 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from itens.views import ItensListView, NewItemView, DeleteItemView
-from accounts.views import RegisterView, login_view, logout_view
+from itens.views import ItensListView, NewItemView, DeleteItemView, UpdateItemView
+from accounts.views import register_view, login_view, logout_view
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,8 +26,9 @@ urlpatterns = [
     path('itens/', ItensListView.as_view(), name='ItensList'),
     path('new/', NewItemView.as_view(), name='NewItem'),
     path('delete_item/<int:pk>', DeleteItemView.as_view(), name='DeleteItem'),
-    path('register/', RegisterView.as_view(), name='Register'),
+    path('register/', register_view, name='Register'),
     path('login/', login_view, name='Login'),
-    path('logout/', logout_view, name = 'Logout' )
+    path('logout/', logout_view, name = 'Logout' ),
+    path('update_item/<int:pk>', UpdateItemView.as_view(), name='EditItem'),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

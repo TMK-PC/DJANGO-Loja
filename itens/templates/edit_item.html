@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Item - {{ item.nome }}{% endblock %}
+
+{% block content %}
+    <h1>Editar Item - {{ item.nome }}</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="id_nome">Nome:</label>
+        <input type="text" id="id_nome" name="nome" value="{{ item.nome }}"><br><br>
+
+        <label for="id_tipo">Tipo:</label>
+        <input type="text" id="id_tipo" name="tipo" value="{{ item.tipo }}"><br><br>
+
+        <label for="id_descricao">Descrição:</label><br>
+        <textarea id="id_descricao" name="descricao">{{ item.descricao }}</textarea><br><br>
+
+        <label for="id_contato">Contato:</label>
+        <input type="text" id="id_contato" name="contato" value="{{ item.contato }}"><br><br>
+
+        <label for="id_foto">Foto:</label><br>
+        {% if item.foto %}
+            <img src="{{ item.foto.url }}" alt="Imagem atual"><br><br>
+        {% endif %}
+        <input type="file" id="id_foto" name="foto"><br><br>
+
+        
+        <a href="{% url 'ItensList' %}"class="btn btn-danger">Cancelar</a>
+    </form>
+{% endblock %}

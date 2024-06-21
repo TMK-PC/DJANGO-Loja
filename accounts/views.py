@@ -24,14 +24,15 @@ def login_view(request):
 
     return render(request, 'login.html', {'form': form})
 
-class RegisterView(FormView):
-    template_name = 'register.html'
-    form_class = UserCreationForm
-    success_url = reverse_lazy('Login')
-
-    def form_valid(self, form):
-        form.save()  
-        return super().form_valid(form)
+def register_view(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('Login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
 
 
 def logout_view(request):

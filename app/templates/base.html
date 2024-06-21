@@ -35,16 +35,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'ItensList' %}">Produtos</a>
                 </li>
-                {% if user.is_authenticated %}
+                {% if is_funcionario %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'NewItem' %}">Novo produto</a>
                     
                 </li>
+                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'Logout' %}">Sair</a>
                     
                 </li>
                 {% endif %}
