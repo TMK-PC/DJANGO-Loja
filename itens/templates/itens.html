@@ -73,7 +73,7 @@
                     <p><strong>Tipo:</strong> {{ item.tipo }}</p>
                     <p><strong>Descrição:</strong> {{ item.descricao }}</p>
                     
-                        <p><strong>Preço:</strong> R${{ item.preco }}</p>
+                        <p><strong>Preço:</strong> R${{ item.preco | floatformat:2 }}</p>
                     
                     {% if item.foto %}
                         <div class="foto">
