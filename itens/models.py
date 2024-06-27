@@ -14,7 +14,7 @@ class Itens(models.Model):
     tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT)
     nome = models.CharField(blank=False, null=False, max_length= 100)
     descricao = models.TextField(blank=True, null=True,)
-    preco = models.CharField(max_length=10, blank=True, null=True)
+    preco = models.FloatField(blank=True, null=True)
     foto = models.ImageField(upload_to='media/')
     
 
